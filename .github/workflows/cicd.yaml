@@ -3,10 +3,10 @@ name: CI Pipeline
 on:
   schedule:
     - cron: '*/3 * * * *'
-  push:
-    branches: [ develop ]
-  pull_request:
-    branches: [ develop ]
+  # push:
+  #   branches: [ develop ]
+  # pull_request:
+  #   branches: [ develop ]
 jobs:
   build:
     runs-on: ubuntu-latest
