@@ -8,7 +8,7 @@ on:
 
   # Schedule workflow for develop branch at 1:00 AM UTC
   schedule:
-    - cron: '20 5 * * *'
+    - cron: '22 5 * * *'
 
   # Schedule workflow for feature-branch at 2:00 AM UTC
     - cron: '25 5 * * *'
