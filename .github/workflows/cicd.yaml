@@ -25,5 +25,5 @@ jobs:
     - name: Print current branch
       run: echo "Current branch is ${{ github.ref }}"
 
-    - name: Print current time
+    - name: Print current time ssss
       run: date
