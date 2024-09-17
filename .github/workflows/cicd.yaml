@@ -1,15 +1,8 @@
 name: CI Pipeline
 
 on:
-  # Triggers workflow on push to main branch
-  push:
-    branches:
-      - main
-      - develop
-
-  # Schedule workflow for develop branch at 1:00 AM UTC
   schedule:
-    - cron: '01 6 * * *'
+    - cron: '10 6 * * *'
 
 jobs:
   build:
@@ -18,24 +11,9 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-      with:
-        # Force the workflow to check out the develop branch
-        ref: develop
-
-    # Print the current branch
-    - name: Print current branch
-      run: echo "Current branch is ${{ github.ref }}"
 
     - name: Print current time
       run: date
-
-    - name: Set up Node.js (example task, replace with your own steps)
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16'
-
-    - name: Install dependencies
-      run: npm install
 
     - name: Run tests
       run: npm test
