@@ -7,9 +7,9 @@ on:
 
   # Also trigger on push or pull request to develop branch
   push:
-    branches: [ develop ]
+    branches: [ main ]
   pull_request:
-    branches: [ develop ]
+    branches: [ main ]
 
 jobs:
   build:
