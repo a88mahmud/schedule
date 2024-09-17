@@ -1,14 +1,15 @@
 name: CI Pipeline
 
 on:
-  # Triggers workflow on push to main branch
-  push:
-    branches:
-      - main
-
-  # Schedule workflow for develop branch at 1:00 AM UTC
+  # Schedule to run every 5 minutes
   schedule:
-    - cron: '27 5 * * *'
+    - cron: '*/5 * * * *'
+
+  # Also trigger on push or pull request to develop branch
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
 
 jobs:
   build:
@@ -17,24 +18,12 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+      with:
+        # Ensure it checks out the develop branch
+        ref: develop
 
-    # Print the current date and time
+    - name: Print current branch
+      run: echo "Current branch is ${{ github.ref }}"
+
     - name: Print current time
       run: date
-
-    # Conditional check to run only on develop branch
-    - name: Run on develop branch
-      if: github.ref == 'refs/heads/develop'
-      run: |
-        echo "This is the develop branch. Running scheduled tasks."
-
-    - name: Set up Node.js (example task, replace with your own steps)
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16'
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Run tests
-      run: npm test
