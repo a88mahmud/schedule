@@ -7,9 +7,9 @@ on:
 
   # Also trigger on push or pull request to develop branch
   push:
-    branches: [ develop ]
+    branches: [ main ]
   pull_request:
-    branches: [ develop ]
+    branches: [ main ]
 
 jobs:
   build:
@@ -25,5 +25,5 @@ jobs:
     - name: Print current branch
       run: echo "Current branch is ${{ github.ref }}"
 
-    - name: Print current time ssss
+    - name: Print current time sss
       run: date
