@@ -1,12 +1,12 @@
 name: CI Pipeline
 
-on:
-  push:
-    branches: [ develop ]
-  pull_request:
-    branches: [ develop ]
+# on:
+#   push:
+#     branches: [ develop ]
+#   pull_request:
+#     branches: [ develop ]
   schedule:
-    - cron: '51 6 * * *'
+    - cron: '55 6 * * *'
 
 jobs:
   build:
@@ -15,9 +15,9 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-
+      
+    - name: Print current branch
+      run: echo "Current branch is ${{ github.ref }}"
+      
     - name: Print current time
       run: date
-
-    - name: Run tests
-      run: npm test
