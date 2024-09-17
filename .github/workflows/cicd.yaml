@@ -2,7 +2,7 @@ name: CI Pipeline
 
 on:
   schedule:
-    - cron: '0*/3 * * * *'
+    - cron: '*/3 * * * *'
   push:
     branches: [ develop ]
   pull_request:
