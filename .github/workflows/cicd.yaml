@@ -18,12 +18,13 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-      with:
-        # Ensure it checks out the develop branch
-        ref: develop
 
-    - name: Print current branch
-      run: echo "Current branch is ${{ github.ref }}"
+    - name: Run only on main branch
+      if: github.ref == 'refs/heads/main'
+      run: |
+        echo "This is the main branch. Running scheduled tasks."
 
-    - name: Print current time sss
-      run: date
+    - name: Run only on develop branch
+      if: github.ref == 'refs/heads/develop'
+      run: |
+        echo "This is the develop branch. Running scheduled tasks."
