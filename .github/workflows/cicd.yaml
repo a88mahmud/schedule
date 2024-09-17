@@ -8,10 +8,7 @@ on:
 
   # Schedule workflow for develop branch at 1:00 AM UTC
   schedule:
-    - cron: '22 5 * * *'
-
-  # Schedule workflow for feature-branch at 2:00 AM UTC
-    - cron: '25 5 * * *'
+    - cron: '27 5 * * *'
 
 jobs:
   build:
@@ -21,17 +18,15 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
+    # Print the current date and time
+    - name: Print current time
+      run: date
+
     # Conditional check to run only on develop branch
     - name: Run on develop branch
       if: github.ref == 'refs/heads/develop'
       run: |
         echo "This is the develop branch. Running scheduled tasks."
-
-    # Conditional check to run only on feature-branch
-    - name: Run on feature-branch
-      if: github.ref == 'refs/heads/feature-branch'
-      run: |
-        echo "This is the feature-branch. Running scheduled tasks."
 
     - name: Set up Node.js (example task, replace with your own steps)
       uses: actions/setup-node@v3
