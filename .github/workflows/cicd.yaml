@@ -1,0 +1,45 @@
+name: CI Pipeline
+
+on:
+  # Triggers workflow on push to main branch
+  push:
+    branches:
+      - main
+
+  # Schedule workflow for develop branch at 1:00 AM UTC
+  schedule:
+    - cron: '20 5 * * *'
+
+  # Schedule workflow for feature-branch at 2:00 AM UTC
+    - cron: '25 5 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Conditional check to run only on develop branch
+    - name: Run on develop branch
+      if: github.ref == 'refs/heads/develop'
+      run: |
+        echo "This is the develop branch. Running scheduled tasks."
+
+    # Conditional check to run only on feature-branch
+    - name: Run on feature-branch
+      if: github.ref == 'refs/heads/feature-branch'
+      run: |
+        echo "This is the feature-branch. Running scheduled tasks."
+
+    - name: Set up Node.js (example task, replace with your own steps)
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run tests
+      run: npm test
