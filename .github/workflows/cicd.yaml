@@ -1,8 +1,12 @@
 name: CI Pipeline
 
 on:
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
   schedule:
-    - cron: '10 6 * * *'
+    - cron: '51 6 * * *'
 
 jobs:
   build:
