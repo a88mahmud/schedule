@@ -1,12 +1,16 @@
 name: CI Pipeline
 
 on:
+  # Schedule to run every 5 minutes
   schedule:
-    - cron: '*/3 * * * *'
-  # push:
-  #   branches: [ develop ]
-  # pull_request:
-  #   branches: [ develop ]
+    - cron: '*/1 * * * *'
+
+  # Also trigger on push or pull request to develop branch
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -14,9 +18,12 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-      
+      with:
+        # Ensure it checks out the develop branch
+        ref: develop
+
     - name: Print current branch
       run: echo "Current branch is ${{ github.ref }}"
-      
+
     - name: Print current time
       run: date
