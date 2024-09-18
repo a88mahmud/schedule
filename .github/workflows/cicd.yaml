@@ -1,30 +1,30 @@
-name: CI Pipeline
+# name: CI Pipeline
 
-on:
-  # Schedule to run every 5 minutes
-  schedule:
-    - cron: '*/1 * * * *'
+# on:
+#   # Schedule to run every 5 minutes
+#   schedule:
+#     - cron: '*/1 * * * *'
 
-  # Also trigger on push or pull request to develop branch
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+#   # Also trigger on push or pull request to develop branch
+#   push:
+#     branches: [ main ]
+#   pull_request:
+#     branches: [ main ]
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
 
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+#     steps:
+#     - name: Checkout code
+#       uses: actions/checkout@v3
 
-    - name: Run only on main branch
-      if: github.ref == 'refs/heads/main'
-      run: |
-        echo "This is the main branch. Running scheduled tasks."
+#     - name: Run only on main branch
+#       if: github.ref == 'refs/heads/main'
+#       run: |
+#         echo "This is the main branch. Running scheduled tasks."
 
-    - name: Run only on develop branch
-      if: github.ref == 'refs/heads/develop'
-      run: |
-        echo "This is the develop branch. Running scheduled tasks."
+#     - name: Run only on develop branch
+#       if: github.ref == 'refs/heads/develop'
+#       run: |
+#         echo "This is the develop branch. Running scheduled tasks."
